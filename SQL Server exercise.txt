@@ -1,0 +1,59 @@
+//Write a query to display first name, last name, package number and internet speed for all customers.
+select a.FName,a.LName,a.pack_id,b.speed
+from			
+customer.customer a inner join customer.package b
+on a.pack_id = b.pack_id;
+
+//Write a query to display first name, last name, package number and internet speed for all customers whose package number equals 22 or 27. Order the query in ascending order by last name.
+select a.FName,a.LName,a.pack_id,b.speed
+from			
+customer.customer a inner join customer.package b
+on a.pack_id = b.pack_id
+where a.pack_id in(1026, 1030);
+
+
+//Display the package number, internet speed, monthly payment and sector name for all packages (Packages and Sectors tables).
+select			
+a.pack_id,a.speed,a.Monthly_payment,b.sector_name
+from			
+customer.package a inner join customer.sector b
+on a.sector_id = b.sector_id;
+
+
+//Display the customer name, package number, internet speed, monthly payment and sector name for all customers (Customers, Packages and Sectors tables).
+select			
+a.FName,a.LName,b.Pack_id,b.speed,
+b.Monthly_payment,c.sector_name
+from			
+customer.customer a 
+inner join customer.package b
+on a.pack_id = b.pack_id
+inner join customer.sector c
+on b.sector_id =c.sector_id
+
+//Display the customer name, package number, internet speed, monthly payment and sector name for all customers in the Malvan sector (Customers, Packages and Sectors tables).
+select			
+a.FName,a.LName,b.Pack_id,b.speed,
+b.Monthly_payment,c.sector_name
+from			
+customer.customer a 
+inner join customer.package b
+on a.pack_id = b.pack_id
+inner join customer.sector c
+on b.sector_id =c.sector_id
+WHERE
+c.sector_name="Malvan"
+
+//Display the last name, first name, join date, package number, internet speed and sector name for all customers in the Malvan sector who joined the company in the year 2006
+select			
+a.FName,a.LName,a.join_date,b.Pack_id,b.speed,
+b.Monthly_payment,c.sector_name
+from			
+customer.customer a 
+inner join customer.package b
+on a.pack_id = b.pack_id
+inner join customer.sector c
+on b.sector_id =c.sector_id
+WHERE
+c.sector_name="Malvan" and 
+extract (year from join_date)=2021
